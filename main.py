@@ -12,6 +12,12 @@ def main:
 	database.createTable("versionbeta")
 	database.insertInto("versionbeta",user_email,user_series)
 	
+	for series in user.getSeries():
+        next_date = fringe.getNextEpisodeDate(series)
+        message += emailFormatter(series,next_date)
+
+    email = Emailer(user.getEmail(),message)
+    email.emailThis()
 
 
 
